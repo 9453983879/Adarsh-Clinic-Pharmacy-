@@ -177,6 +177,38 @@
             .hero-image { order: -1; } /* Image on top in mobile */
             .hero { padding-top: 120px; }
         }
+        /* ... पुराना CSS कोड यहाँ होगा ... */
+
+        /* ⚠ यहाँ पेस्ट करें (style बंद होने से पहले) */
+        
+        /* --- FORM STYLING --- */
+        .form-label {
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: #1d1d1f;
+            margin-bottom: 5px;
+            display: block;
+            margin-top: 15px;
+        }
+
+        .form-input {
+            width: 100%;
+            padding: 12px;
+            border-radius: 12px;
+            border: 1px solid #d2d2d7;
+            background: #f5f5f7;
+            font-size: 1rem;
+            outline: none;
+            transition: 0.3s;
+        }
+
+        .form-input:focus {
+            border-color: #0071E3;
+            background: #fff;
+            box-shadow: 0 0 0 4px rgba(0,113,227, 0.1);
+        }
+
+    </style>
     </style>
 </head>
 <body>
@@ -233,7 +265,34 @@
         </div>
 
     </div>
+<section id="appointment" style="padding: 50px 20px; max-width: 800px; margin: 0 auto;">
+        <h2 class="section-title">Book an Appointment</h2>
+        
+        <div class="card" style="text-align: left;">
+            <p style="margin-bottom: 20px; text-align: center;">Fill this form to book a slot with Dr. Adarsh.</p>
+            
+            <label class="form-label">Patient Name</label>
+            <input type="text" id="pName" class="form-input" placeholder="Enter patient name">
 
+            <div style="display: flex; gap: 15px;">
+                <div style="flex: 1;">
+                    <label class="form-label">Age</label>
+                    <input type="number" id="pAge" class="form-input" placeholder="Age">
+                </div>
+                <div style="flex: 2;">
+                    <label class="form-label">Address</label>
+                    <input type="text" id="pAddress" class="form-input" placeholder="Location/Village">
+                </div>
+            </div>
+
+            <label class="form-label">Describe Problem</label>
+            <textarea id="pProblem" class="form-input" rows="4" placeholder="Fever, Stomach pain, etc."></textarea>
+
+            <button onclick="bookAppointment()" class="btn" style="width: 100%; margin-top: 10px; cursor: pointer;">
+                Book Appointment via WhatsApp
+            </button>
+        </div>
+    </section>
     <footer style="text-align:center; padding:40px; background:#fff; border-top:1px solid #eee; color:#888;">
         <p>Designed by Adarsh Medical Store</p>
         <p style="font-size:0.8rem; margin-top:10px;">Dharmpur Chauraha, Maharajganj</p>
@@ -256,10 +315,42 @@
         const url = "https://wa.me/" + phoneNumber + "?text=" + encodeURIComponent(msg);
         window.open(url, '_blank');
     }
+        /* ... पुराने फंक्शन यहाँ होंगे ... */
+
+    function consultDoctor() {
+       /* ... पुराना कोड ... */
+    } 
+
+    // ⚠ यहाँ पेस्ट करें (Script बंद होने से पहले)
+
+    function bookAppointment() {
+        var name = document.getElementById("pName").value;
+        var age = document.getElementById("pAge").value;
+        var address = document.getElementById("pAddress").value;
+        var problem = document.getElementById("pProblem").value;
+
+        if(name === "" || problem === "") {
+            alert("Please enter Patient Name and Problem.");
+            return;
+        }
+
+        var msg = "🏥 New Appointment Request \n\n" + 
+                  "👤 Name: " + name + "\n" +
+                  "🎂 Age: " + age + "\n" +
+                  "📍 Address: " + address + "\n" +
+                  "📝 Problem: " + problem;
+
+        const url = "https://wa.me/" + phoneNumber + "?text=" + encodeURIComponent(msg);
+        window.open(url, '_blank');
+    }
+
+    </script>
+</body>
 </script>
 
 </body>
 </html>
+
 
 
 
