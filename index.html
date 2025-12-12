@@ -245,25 +245,20 @@
 
     function orderMedicine() {
         const msg = "Hi Adarsh Sir, I want to order medicines. Here is my list:";
-        
-        // ✅ 2. यहाँ ध्यान दें: ' की जगह ` (Backtick) लगा है
-        const url = https://wa.me/${phoneNumber}?text=${encodeURIComponent(msg)};
-        
+        // Backtick (`) की टेंशन खत्म, यह (+) वाला तरीका यूज़ करें:
+        const url = "https://wa.me/" + phoneNumber + "?text=" + encodeURIComponent(msg);
         window.open(url, '_blank');
-    }
 
     function consultDoctor() {
         const msg = "Hi, I have a medical problem and need consultation.";
-        
-        // ✅ 3. यहाँ भी ` (Backtick) का इस्तेमाल करें
-        const url = https://wa.me/${phoneNumber}?text=${encodeURIComponent(msg)};
-        
+ // यहाँ भी यही (+) वाला कोड डालें:
+        const url = "https://wa.me/" + phoneNumber + "?text=" + encodeURIComponent(msg);
         window.open(url, '_blank');
-    }
 </script>
 
 </body>
 </html>
+
 
 
 
