@@ -240,21 +240,31 @@
     </footer>
 
     <script>
-        const phoneNumber = "917518672167"; // Apna Number yahan dalein
+    // ✅ 1. नंबर के आगे 91 ज़रूर लगाएं
+    const phoneNumber = "917518672167"; 
 
-        function orderMedicine() {
-            const msg = "Hi Adarsh Sir, I want to order medicines. Here is my list:";
-            window.open('https://wa.me/${phoneNumber}?text=${encodeURIComponent(msg)}', '_blank');
-        }
+    function orderMedicine() {
+        const msg = "Hi Adarsh Sir, I want to order medicines. Here is my list:";
+        
+        // ✅ 2. यहाँ ध्यान दें: ' की जगह ` (Backtick) लगा है
+        const url = https://wa.me/${phoneNumber}?text=${encodeURIComponent(msg)};
+        
+        window.open(url, '_blank');
+    }
 
-        function consultDoctor() {
-            const msg = "Hi, I have a medical problem and need consultation.";
-            window.open('https://wa.me/${phoneNumber}?text=${encodeURIComponent(msg)}', '_blank');
-        }
-    </script>
+    function consultDoctor() {
+        const msg = "Hi, I have a medical problem and need consultation.";
+        
+        // ✅ 3. यहाँ भी ` (Backtick) का इस्तेमाल करें
+        const url = https://wa.me/${phoneNumber}?text=${encodeURIComponent(msg)};
+        
+        window.open(url, '_blank');
+    }
+</script>
 
 </body>
 </html>
+
 
 
 
