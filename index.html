@@ -39,7 +39,7 @@
 
         .logo { font-size: 1.3rem; font-weight: 700; color: #000; letter-spacing: -0.5px; }
 
-        /* --- NEW HERO SECTION (TAGADA LOOK) --- */
+        /* --- HERO SECTION --- */
         .hero {
             min-height: 100vh;
             display: flex;
@@ -60,7 +60,6 @@
             z-index: 2;
         }
 
-        /* Text Styling */
         .hero-text h1 {
             font-size: 4.5rem;
             line-height: 1.05;
@@ -68,7 +67,7 @@
             letter-spacing: -2px;
             margin-bottom: 20px;
             background: -webkit-linear-gradient(45deg, #1D1D1F, #434344);
-          -webkit-background-clip: text;
+            -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
 
@@ -86,7 +85,6 @@
             font-weight: 400;
         }
 
-        /* Image Styling (Floating Effect) */
         .hero-image {
             position: relative;
             animation: float 6s ease-in-out infinite;
@@ -101,7 +99,7 @@
         
         .hero-image:hover img { transform: scale(1.02); }
 
-        /* --- ACTION CARDS --- */
+        /* --- CARDS & BUTTONS --- */
         .section-title {
             text-align: center;
             font-size: 2.5rem;
@@ -112,7 +110,7 @@
 
         .cards-container {
             max-width: 1000px;
-            margin: 0 auto 100px auto;
+            margin: 0 auto 50px auto; /* Margin bottom reduced */
             padding: 0 20px;
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
@@ -152,7 +150,6 @@
             transition: 0.3s; width: 100%;
         }
 
-        /* Specific Card Styles */
         .card-medicine .icon-circle { color: var(--accent-blue); background: #eef6ff; }
         .card-medicine .btn { background: var(--accent-blue); color: #fff; }
         .card-medicine .btn:hover { background: #005bb5; }
@@ -163,24 +160,6 @@
         .card-doctor .btn { background: #fff; color: #000; }
         .card-doctor .btn:hover { background: #e5e5e5; }
 
-        /* --- ANIMATIONS --- */
-        @keyframes float {
-            0% { transform: translateY(0px); }
-            50% { transform: translateY(-20px); }
-            100% { transform: translateY(0px); }
-        }
-
-        /* --- MOBILE RESPONSIVENESS --- */
-        @media (max-width: 768px) {
-            .hero-container { grid-template-columns: 1fr; text-align: center; gap: 40px; }
-            .hero-text h1 { font-size: 3rem; }
-            .hero-image { order: -1; } /* Image on top in mobile */
-            .hero { padding-top: 120px; }
-        }
-        /* ... पुराना CSS कोड यहाँ होगा ... */
-
-        /* ⚠ यहाँ पेस्ट करें (style बंद होने से पहले) */
-        
         /* --- FORM STYLING --- */
         .form-label {
             font-size: 0.9rem;
@@ -189,6 +168,7 @@
             margin-bottom: 5px;
             display: block;
             margin-top: 15px;
+            text-align: left;
         }
 
         .form-input {
@@ -200,6 +180,7 @@
             font-size: 1rem;
             outline: none;
             transition: 0.3s;
+            margin-bottom: 10px;
         }
 
         .form-input:focus {
@@ -207,45 +188,55 @@
             background: #fff;
             box-shadow: 0 0 0 4px rgba(0,113,227, 0.1);
         }
- 
+
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+            100% { transform: translateY(0px); }
+        }
+
+        @media (max-width: 768px) {
+            .hero-container { grid-template-columns: 1fr; text-align: center; gap: 40px; }
+            .hero-text h1 { font-size: 3rem; }
+            .hero-image { order: -1; }
+            .hero { padding-top: 120px; }
+        }
     </style>
-    
 </head>
 <body>
 
     <nav>
         <div class="nav-content">
             <div class="logo"> Adarsh Clinic & Pharmacy </div>
-            <a href="https://wa.me/917518672167" style="color:var(--accent-blue); font-weight:600;">Contact</a>
+            <a href="https://wa.me/917518672167" style="color:var(--accent-blue); font-weight:600; text-decoration:none;">Contact</a>
         </div>
     </nav>
 
-     <section class="hero">
-    <div class="hero-container">
-        <div class="hero-text">
-            <h1>Your Health.<br><span class="highlight">Reimagined.</span></h1>
-            <p>Adarsh Medical Store is now online. Get premium medicines and expert doctor consultation right from your home.</p>
-            
-            <div style="display:flex; gap:15px; flex-wrap:wrap; margin-bottom: 30px;">
-                <button onclick="document.querySelector('.cards-container').scrollIntoView({behavior: 'smooth'})" 
-                        style="padding:15px 30px; border-radius:30px; border:none; background:#1d1d1f; color:#fff; font-size:1rem; cursor:pointer;">
-                    Get Started
-                </button>
+    <section class="hero">
+        <div class="hero-container">
+            <div class="hero-text">
+                <h1>Your Health.<br><span class="highlight">Reimagined.</span></h1>
+                <p>Adarsh Medical Store is now online. Get premium medicines and expert doctor consultation right from your home.</p>
+                
+                <div style="display:flex; gap:15px; flex-wrap:wrap; margin-bottom: 30px;">
+                    <button onclick="document.querySelector('.cards-container').scrollIntoView({behavior: 'smooth'})" 
+                            style="padding:15px 30px; border-radius:30px; border:none; background:#1d1d1f; color:#fff; font-size:1rem; cursor:pointer;">
+                        Get Started
+                    </button>
+                </div>
+
+                <div class="address-box" style="display: flex; align-items: center; gap: 10px; color: #666; font-size: 0.9rem; background: rgba(255,255,255,0.8); padding: 12px 20px; border-radius: 15px; width: fit-content; border: 1px solid rgba(0,0,0,0.1); backdrop-filter: blur(10px);">
+                    <i class="fas fa-map-marker-alt" style="color: #ff3b30; font-size: 1.2rem;"></i>
+                    <span><strong>Adarsh Clinic & Pharmacy:</strong>  Dharmpur Chauraha, Maharajganj, UP</span>
+                </div>
             </div>
 
-            <div class="address-box" style="display: flex; align-items: center; gap: 10px; color: #666; font-size: 0.9rem; background: rgba(255,255,255,0.8); padding: 12px 20px; border-radius: 15px; width: fit-content; border: 1px solid rgba(0,0,0,0.1); backdrop-filter: blur(10px);">
-                <i class="fas fa-map-marker-alt" style="color: #ff3b30; font-size: 1.2rem;"></i>
-                <span><strong>Adarsh Clinic & Pharmacy:</strong>  Dharmpur Chauraha, Maharajganj, UP</span>
+            <div class="hero-image">
+                <img src="main.jpg" alt="Medical Store Tech" style="width: 100%; border-radius: 40px; box-shadow: 0 30px 60px rgba(0,113,227, 0.3);">
             </div>
         </div>
+    </section>
 
-        <div class="hero-image">
-            <img src="main.jpg" 
-                 alt="Medical Store Tech"
-                 style="width: 100%; border-radius: 40px; box-shadow: 0 30px 60px rgba(0,113,227, 0.3);">
-        </div>
-    </div>
-</section>
     <h2 class="section-title">What do you need?</h2>
     
     <div class="cards-container">
@@ -263,7 +254,8 @@
             <p>Describe your sickness. Get treatment and advice directly on chat.</p>
             <span class="btn">Consult Now &rarr;</span>
         </div>
-<section id="appointment" style="padding: 50px 20px; max-width: 800px; margin: 0 auto;">
+
+    </div> <section id="appointment" style="padding: 50px 20px; max-width: 800px; margin: 0 auto;">
         <h2 class="section-title">Book an Appointment</h2>
         
         <div class="card" style="text-align: left;">
@@ -290,105 +282,60 @@
                 Book Appointment via WhatsApp
             </button>
         </div>
-</section>
-    
- 
-    
+    </section>
+   
     <footer style="text-align:center; padding: 60px 20px; background:#fff; border-top:1px solid #f2f2f2;">
         
         <p style="color: #86868b; font-size: 0.9rem; margin-bottom: 5px;"> TiwariX</p>
         <p style="color: #a1a1a6; font-size: 0.8rem; margin-bottom: 40px;"> Web Solutions</p>
 
         <div style="opacity: 0.8; transition: opacity 0.3s;" onmouseover="this.style.opacity='1'" onmouseout="this.style.opacity='0.8'">
-            
             <p style="font-size: 0.7rem; font-weight: 700; color: #d2d2d7; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 8px;">
                 DIGITAL EXPERIENCE BY
             </p>
-
-            <h2 style="
-                margin: 0;
-                font-family: -apple-system, BlinkMacSystemFont, sans-serif;
-                font-weight: 900; /* Extra Bold */
-                font-size: 2.2rem; /* Bada Size */
-                color: #1d1d1f; /* Almost Black */
-                letter-spacing: -1.5px; /* Chipka hua text (Spotify jaisa) */
-                line-height: 1;
-                cursor: default;
-            ">
+            <h2 style="margin: 0; font-family: -apple-system, BlinkMacSystemFont, sans-serif; font-weight: 900; font-size: 2.2rem; color: #1d1d1f; letter-spacing: -1.5px; line-height: 1; cursor: default;">
                 HIMANSHU TIWARI <span style="color: #0071E3;">.</span>
             </h2>
-            
         </div>
 
     </footer>
-        
-    
 
     <script>
-    // ✅ 1. नंबर के आगे 91 ज़रूर लगाएं
-    const phoneNumber = "917518672167"; 
+        const phoneNumber = "917518672167"; 
 
-    function orderMedicine() {
-        const msg = "Hi Adarsh Clinic & Pharmacy, I want to order medicines. Here is my list:";
-        // Backtick (`) की टेंशन खत्म, यह (+) वाला तरीका यूज़ करें:
-        const url = "https://wa.me/" + phoneNumber + "?text=" + encodeURIComponent(msg);
-        window.open(url, '_blank');
-    }
-
-    function consultDoctor() {
-        const msg = "Hi Adarsh Clinic & Pharmacy, I have a medical problem and need consultation.";
- // यहाँ भी यही (+) वाला कोड डालें:
-        const url = "https://wa.me/" + phoneNumber + "?text=" + encodeURIComponent(msg);
-        window.open(url, '_blank');
-    }
-        /* ... पुराने फंक्शन यहाँ होंगे ... */
-
-     
-
-    function bookAppointment() {
-        var name = document.getElementById("pName").value;
-        var age = document.getElementById("pAge").value;
-        var address = document.getElementById("pAddress").value;
-        var problem = document.getElementById("pProblem").value;
-
-        if(name === "" || problem === "") {
-            alert("Please enter Patient Name and Problem.");
-            return;
+        function orderMedicine() {
+            const msg = "Hi Adarsh Clinic & Pharmacy, I want to order medicines. Here is my list:";
+            const url = "https://wa.me/" + phoneNumber + "?text=" + encodeURIComponent(msg);
+            window.open(url, '_blank');
         }
 
-        var msg = "🏥 New Appointment Request \n\n" + 
-                  "👤 Name: " + name + "\n" +
-                  "🎂 Age: " + age + "\n" +
-                  "📍 Address: " + address + "\n" +
-                  "📝 Problem: " + problem;
+        function consultDoctor() {
+            const msg = "Hi Adarsh Clinic & Pharmacy, I have a medical problem and need consultation.";
+            const url = "https://wa.me/" + phoneNumber + "?text=" + encodeURIComponent(msg);
+            window.open(url, '_blank');
+        }
 
-        const url = "https://wa.me/" + phoneNumber + "?text=" + encodeURIComponent(msg);
-        window.open(url, '_blank');
-    }
+        function bookAppointment() {
+            var name = document.getElementById("pName").value;
+            var age = document.getElementById("pAge").value;
+            var address = document.getElementById("pAddress").value;
+            var problem = document.getElementById("pProblem").value;
 
+            if(name === "" || problem === "") {
+                alert("Please enter Patient Name and Problem.");
+                return;
+            }
 
-</script>
+            var msg = "🏥 New Appointment Request \n\n" + 
+                    "👤 Name: " + name + "\n" +
+                    "🎂 Age: " + age + "\n" +
+                    "📍 Address: " + address + "\n" +
+                    "📝 Problem: " + problem;
+
+            const url = "https://wa.me/" + phoneNumber + "?text=" + encodeURIComponent(msg);
+            window.open(url, '_blank');
+        }
+    </script>
 
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
