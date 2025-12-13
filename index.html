@@ -6,200 +6,147 @@
     <title>Adarsh Clinic & Pharmacy | Premium Healthcare</title>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <style>
-        /* --- RESET & APPLE FONTS --- */
+        /* --- RESET & VARIABLES --- */
         :root {
             --bg-color: #F5F5F7;
             --text-dark: #1D1D1F;
             --accent-blue: #0071E3;
             --accent-green: #28CD41;
-            --glass-card: rgba(255, 255, 255, 0.6);
+            --glass-card: rgba(255, 255, 255, 0.8);
             --shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
         }
 
-        * { margin: 0; padding: 0; box-sizing: border-box; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; scroll-behavior: smooth; }
         
         body { background: var(--bg-color); color: var(--text-dark); overflow-x: hidden; }
 
-        /* --- NAVIGATION BAR (GLASS) --- */
+        /* --- ANIMATION CLASSES --- */
+        .reveal { opacity: 0; transform: translateY(30px); transition: all 0.8s ease-out; }
+        .reveal.active { opacity: 1; transform: translateY(0); }
+
+        /* --- NAVIGATION (UPDATED FOR TIWARIX BRANDING) --- */
         nav {
-            position: fixed;
-            top: 0; width: 100%;
+            position: fixed; top: 0; width: 100%;
             background: rgba(255, 255, 255, 0.85);
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
-            z-index: 1000;
-            border-bottom: 1px solid rgba(0,0,0,0.05);
+            backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+            z-index: 1000; border-bottom: 1px solid rgba(0,0,0,0.05);
             display: flex; justify-content: center;
         }
-
         .nav-content {
             width: 100%; max-width: 1100px; padding: 15px 20px;
             display: flex; justify-content: space-between; align-items: center;
         }
-
         .logo { font-size: 1.3rem; font-weight: 700; color: #000; letter-spacing: -0.5px; }
+
+        /* TIWARIX ADMIN BADGE STYLE */
+        .admin-badge {
+            display: flex; align-items: center; gap: 8px;
+            background: rgba(0, 0, 0, 0.04); padding: 8px 16px;
+            border-radius: 20px; border: 1px solid rgba(0,0,0,0.05);
+            margin-right: 15px; /* Contact button se thoda door */
+        }
+        .admin-text-small { font-size: 0.7rem; color: #86868b; font-weight: 500; text-transform: uppercase; letter-spacing: 1px; }
+        .admin-brand { 
+            font-weight: 900; color: #1d1d1f; letter-spacing: -0.5px; font-size: 0.9rem;
+            background: -webkit-linear-gradient(45deg, #1D1D1F, #0071E3);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .nav-right { display: flex; align-items: center; }
 
         /* --- HERO SECTION --- */
         .hero {
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+            min-height: 100vh; display: flex; align-items: center; justify-content: center;
             padding: 100px 20px 50px 20px;
             background: radial-gradient(circle at 50% 50%, #ffffff 0%, #eef1f5 100%);
-            overflow: hidden;
-            position: relative;
+            position: relative; overflow: hidden;
         }
-
         .hero-container {
-            max-width: 1100px;
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 50px;
-            align-items: center;
-            z-index: 2;
+            max-width: 1100px; display: grid; grid-template-columns: 1fr 1fr;
+            gap: 50px; align-items: center; z-index: 2;
         }
-
         .hero-text h1 {
-            font-size: 4.5rem;
-            line-height: 1.05;
-            font-weight: 800;
-            letter-spacing: -2px;
-            margin-bottom: 20px;
-            background: -webkit-linear-gradient(45deg, #1D1D1F, #434344);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
+            font-size: 4.5rem; line-height: 1.05; font-weight: 800; letter-spacing: -2px; margin-bottom: 20px;
+            background: -webkit-linear-gradient(45deg, #1D1D1F, #434344); -webkit-background-clip: text; -webkit-text-fill-color: transparent;
         }
-
         .hero-text span.highlight {
-            background: linear-gradient(90deg, #0071E3, #00C7BE);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
+            background: linear-gradient(90deg, #0071E3, #00C7BE); -webkit-background-clip: text; -webkit-text-fill-color: transparent;
         }
-
-        .hero-text p {
-            font-size: 1.3rem;
-            color: #6e6e73;
-            margin-bottom: 30px;
-            line-height: 1.5;
-            font-weight: 400;
-        }
-
-        .hero-image {
-            position: relative;
-            animation: float 6s ease-in-out infinite;
-        }
-
-        .hero-image img {
-            width: 100%;
-            border-radius: 40px;
-            box-shadow: 0 30px 60px rgba(0,113,227, 0.25);
-            transition: transform 0.5s;
-        }
+        .hero-text p { font-size: 1.3rem; color: #6e6e73; margin-bottom: 30px; line-height: 1.5; }
         
+        .hero-image { animation: float 6s ease-in-out infinite; }
+        .hero-image img { width: 100%; border-radius: 40px; box-shadow: 0 30px 60px rgba(0,113,227, 0.25); transition: transform 0.5s; }
         .hero-image:hover img { transform: scale(1.02); }
 
-        /* --- CARDS & BUTTONS --- */
-        .section-title {
-            text-align: center;
-            font-size: 2.5rem;
-            font-weight: 700;
-            margin-top: 50px;
-            margin-bottom: 30px;
-        }
-
+        /* --- CARDS SECTION --- */
+        .section-title { text-align: center; font-size: 2.5rem; font-weight: 700; margin-top: 50px; margin-bottom: 30px; }
+        
         .cards-container {
-            max-width: 1000px;
-            margin: 0 auto 50px auto; /* Margin bottom reduced */
-            padding: 0 20px;
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 30px;
+            max-width: 1000px; margin: 0 auto 50px auto; padding: 0 20px;
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 30px;
         }
-
         .card {
-            background: #fff;
-            padding: 40px;
-            border-radius: 30px;
-            position: relative;
-            overflow: hidden;
-            box-shadow: var(--shadow);
-            transition: all 0.4s ease;
-            cursor: pointer;
-            text-align: center;
-            border: 1px solid rgba(0,0,0,0.02);
+            background: #fff; padding: 40px; border-radius: 30px;
+            box-shadow: var(--shadow); transition: all 0.4s ease; cursor: pointer;
+            text-align: center; border: 1px solid rgba(0,0,0,0.02);
         }
-
         .card:hover { transform: translateY(-10px); box-shadow: 0 20px 50px rgba(0,0,0,0.12); }
-
         .icon-circle {
-            width: 80px; height: 80px;
-            background: #F2F2F7;
-            border-radius: 50%;
-            display: flex; align-items: center; justify-content: center;
-            margin: 0 auto 20px auto;
-            font-size: 2rem;
+            width: 80px; height: 80px; background: #F2F2F7; border-radius: 50%;
+            display: flex; align-items: center; justify-content: center; margin: 0 auto 20px auto; font-size: 2rem;
         }
-
-        .card h3 { font-size: 1.8rem; margin-bottom: 10px; }
-        .card p { color: #86868b; font-size: 1.1rem; margin-bottom: 30px; }
-
         .btn {
-            display: inline-block; padding: 15px 35px;
-            border-radius: 50px; font-weight: 600; font-size: 1.1rem;
-            transition: 0.3s; width: 100%;
+            display: inline-block; padding: 15px 35px; border-radius: 50px; font-weight: 600; font-size: 1.1rem;
+            transition: 0.3s; width: 100%; margin-top: 15px;
         }
-
+        
+        /* Card Colors */
         .card-medicine .icon-circle { color: var(--accent-blue); background: #eef6ff; }
         .card-medicine .btn { background: var(--accent-blue); color: #fff; }
         .card-medicine .btn:hover { background: #005bb5; }
-
         .card-doctor { background: #1D1D1F; color: #fff; }
         .card-doctor .icon-circle { background: #333; color: var(--accent-green); }
         .card-doctor p { color: #a1a1a6; }
         .card-doctor .btn { background: #fff; color: #000; }
         .card-doctor .btn:hover { background: #e5e5e5; }
 
-        /* --- FORM STYLING --- */
-        .form-label {
-            font-size: 0.9rem;
-            font-weight: 600;
-            color: #1d1d1f;
-            margin-bottom: 5px;
-            display: block;
-            margin-top: 15px;
-            text-align: left;
+        /* --- APPOINTMENT FORM --- */
+        .form-container {
+            background: #fff; padding: 40px; border-radius: 30px;
+            box-shadow: var(--shadow); border: 1px solid rgba(0,0,0,0.05);
         }
-
+        .form-label { font-size: 0.9rem; font-weight: 600; color: #1d1d1f; margin-bottom: 8px; display: block; margin-top: 15px; }
         .form-input {
-            width: 100%;
-            padding: 12px;
-            border-radius: 12px;
-            border: 1px solid #d2d2d7;
-            background: #f5f5f7;
-            font-size: 1rem;
-            outline: none;
-            transition: 0.3s;
-            margin-bottom: 10px;
+            width: 100%; padding: 15px; border-radius: 12px; border: 1px solid #d2d2d7;
+            background: #f5f5f7; font-size: 1rem; outline: none; transition: 0.3s;
         }
-
         .form-input:focus {
-            border-color: #0071E3;
-            background: #fff;
-            box-shadow: 0 0 0 4px rgba(0,113,227, 0.1);
+            border-color: #0071E3; background: #fff; box-shadow: 0 0 0 4px rgba(0,113,227, 0.1);
         }
 
-        @keyframes float {
-            0% { transform: translateY(0px); }
-            50% { transform: translateY(-20px); }
-            100% { transform: translateY(0px); }
+        /* --- FLOATING WHATSAPP BUTTON --- */
+        .float-wa {
+            position: fixed; bottom: 30px; right: 30px;
+            background: #25D366; color: white; width: 60px; height: 60px;
+            border-radius: 50%; display: flex; align-items: center; justify-content: center;
+            font-size: 30px; box-shadow: 0 10px 30px rgba(37, 211, 102, 0.4);
+            z-index: 2000; transition: transform 0.3s; cursor: pointer;
+            text-decoration: none;
         }
+        .float-wa:hover { transform: scale(1.1); }
 
+        @keyframes float { 0% {transform: translateY(0px);} 50% {transform: translateY(-20px);} 100% {transform: translateY(0px);} }
+        
         @media (max-width: 768px) {
             .hero-container { grid-template-columns: 1fr; text-align: center; gap: 40px; }
             .hero-text h1 { font-size: 3rem; }
             .hero-image { order: -1; }
-            .hero { padding-top: 120px; }
+            .float-wa { bottom: 20px; right: 20px; width: 50px; height: 50px; font-size: 25px; }
+            
+            /* Mobile adjustment for Header */
+            .admin-text-small { display: none; } /* Mobile me 'Designed by' chhup jayega, sirf TiwariX dikhega */
+            .logo { font-size: 1rem; }
         }
     </style>
 </head>
@@ -208,26 +155,38 @@
     <nav>
         <div class="nav-content">
             <div class="logo"> Adarsh Clinic & Pharmacy </div>
-            <a href="https://wa.me/917518672167" style="color:var(--accent-blue); font-weight:600; text-decoration:none;">Contact</a>
+            
+            <div class="nav-right">
+                <div class="admin-badge">
+                    <span class="admin-text-small">Designed by</span>
+                    <span class="admin-brand">Himanshu Tiwari</span>
+                </div>
+
+                <a href="https://wa.me/917518672167" style="color:var(--accent-blue); font-weight:600; text-decoration:none;">Contact</a>
+            </div>
         </div>
     </nav>
 
+    <a href="https://wa.me/917518672167" class="float-wa" target="_blank">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
     <section class="hero">
-        <div class="hero-container">
+        <div class="hero-container reveal active">
             <div class="hero-text">
                 <h1>Your Health.<br><span class="highlight">Reimagined.</span></h1>
                 <p>Adarsh Medical Store is now online. Get premium medicines and expert doctor consultation right from your home.</p>
                 
-                <div style="display:flex; gap:15px; flex-wrap:wrap; margin-bottom: 30px;">
+                <div style="display:flex; gap:15px; flex-wrap:wrap; margin-bottom: 30px; justify-content: flex-start;">
                     <button onclick="document.querySelector('.cards-container').scrollIntoView({behavior: 'smooth'})" 
                             style="padding:15px 30px; border-radius:30px; border:none; background:#1d1d1f; color:#fff; font-size:1rem; cursor:pointer;">
                         Get Started
                     </button>
                 </div>
 
-                <div class="address-box" style="display: flex; align-items: center; gap: 10px; color: #666; font-size: 0.9rem; background: rgba(255,255,255,0.8); padding: 12px 20px; border-radius: 15px; width: fit-content; border: 1px solid rgba(0,0,0,0.1); backdrop-filter: blur(10px);">
+                <div style="display: inline-flex; align-items: center; gap: 10px; color: #666; font-size: 0.9rem; background: rgba(255,255,255,0.8); padding: 12px 20px; border-radius: 15px; border: 1px solid rgba(0,0,0,0.1); backdrop-filter: blur(10px);">
                     <i class="fas fa-map-marker-alt" style="color: #ff3b30; font-size: 1.2rem;"></i>
-                    <span><strong>Adarsh Clinic & Pharmacy:</strong>  Dharmpur Chauraha, Maharajganj, UP</span>
+                    <span><strong>Location:</strong> Dharmpur Chauraha, Maharajganj</span>
                 </div>
             </div>
 
@@ -237,54 +196,56 @@
         </div>
     </section>
 
-    <h2 class="section-title">What do you need?</h2>
+    <h2 class="section-title reveal">What do you need?</h2>
     
     <div class="cards-container">
         
-        <div class="card card-medicine" onclick="orderMedicine()">
+        <div class="card card-medicine reveal" onclick="orderMedicine()">
             <div class="icon-circle"><i class="fas fa-pills"></i></div>
             <h3>Buy Medicine</h3>
             <p>Upload prescription or type the medicine name. Fast delivery via WhatsApp.</p>
             <span class="btn">Order Now &rarr;</span>
         </div>
 
-        <div class="card card-doctor" onclick="consultDoctor()">
+        <div class="card card-doctor reveal" onclick="consultDoctor()">
             <div class="icon-circle"><i class="fas fa-user-md"></i></div>
             <h3>Talk to Doctor</h3>
             <p>Describe your sickness. Get treatment and advice directly on chat.</p>
             <span class="btn">Consult Now &rarr;</span>
         </div>
 
-    </div> <section id="appointment" style="padding: 50px 20px; max-width: 800px; margin: 0 auto;">
+    </div>
+
+    <section id="appointment" style="padding: 50px 20px; max-width: 800px; margin: 0 auto;" class="reveal">
         <h2 class="section-title">Book an Appointment</h2>
         
-        <div class="card" style="text-align: left;">
-            <p style="margin-bottom: 20px; text-align: center;">Fill this form to book a slot with Dr. Adarsh.</p>
+        <div class="form-container">
+            <p style="margin-bottom: 25px; text-align: center; color:#86868b;">Fill this form to book a slot with Dr. Adarsh.</p>
             
             <label class="form-label">Patient Name</label>
-            <input type="text" id="pName" class="form-input" placeholder="Enter patient name">
+            <input type="text" id="pName" class="form-input" placeholder="e.g. Rahul Kumar">
 
             <div style="display: flex; gap: 15px;">
                 <div style="flex: 1;">
                     <label class="form-label">Age</label>
-                    <input type="number" id="pAge" class="form-input" placeholder="Age">
+                    <input type="number" id="pAge" class="form-input" placeholder="25">
                 </div>
                 <div style="flex: 2;">
                     <label class="form-label">Address</label>
-                    <input type="text" id="pAddress" class="form-input" placeholder="Location/Village">
+                    <input type="text" id="pAddress" class="form-input" placeholder="Village/City">
                 </div>
             </div>
 
             <label class="form-label">Describe Problem</label>
-            <textarea id="pProblem" class="form-input" rows="4" placeholder="Fever, Stomach pain, etc."></textarea>
+            <textarea id="pProblem" class="form-input" rows="4" placeholder="Describe symptoms like fever, pain..."></textarea>
 
-            <button onclick="bookAppointment()" class="btn" style="width: 100%; margin-top: 10px; cursor: pointer;">
-                Book Appointment via WhatsApp
+            <button onclick="bookAppointment()" class="btn" style="width: 100%; margin-top: 25px; cursor: pointer; background: #000; color: #fff;">
+                Confirm & Send on WhatsApp
             </button>
         </div>
     </section>
    
-    <footer style="text-align:center; padding: 60px 20px; background:#fff; border-top:1px solid #f2f2f2;">
+    <footer style="text-align:center; padding: 80px 20px; background:#fff; border-top:1px solid #f2f2f2;" class="reveal">
         
         <p style="color: #86868b; font-size: 0.9rem; margin-bottom: 5px;"> TiwariX</p>
         <p style="color: #a1a1a6; font-size: 0.8rem; margin-bottom: 40px;"> Web Solutions</p>
@@ -304,13 +265,13 @@
         const phoneNumber = "917518672167"; 
 
         function orderMedicine() {
-            const msg = "Hi Adarsh Clinic & Pharmacy, I want to order medicines. Here is my list:";
+            const msg = "Hi Adarsh Clinic, I want to order medicines.";
             const url = "https://wa.me/" + phoneNumber + "?text=" + encodeURIComponent(msg);
             window.open(url, '_blank');
         }
 
         function consultDoctor() {
-            const msg = "Hi Adarsh Clinic & Pharmacy, I have a medical problem and need consultation.";
+            const msg = "Hi Adarsh Clinic, I need doctor consultation.";
             const url = "https://wa.me/" + phoneNumber + "?text=" + encodeURIComponent(msg);
             window.open(url, '_blank');
         }
@@ -322,11 +283,11 @@
             var problem = document.getElementById("pProblem").value;
 
             if(name === "" || problem === "") {
-                alert("Please enter Patient Name and Problem.");
+                alert("Please enter Name and Problem details.");
                 return;
             }
 
-            var msg = "🏥 New Appointment Request \n\n" + 
+            var msg = "🏥 APPOINTMENT REQUEST \n\n" + 
                     "👤 Name: " + name + "\n" +
                     "🎂 Age: " + age + "\n" +
                     "📍 Address: " + address + "\n" +
@@ -334,6 +295,21 @@
 
             const url = "https://wa.me/" + phoneNumber + "?text=" + encodeURIComponent(msg);
             window.open(url, '_blank');
+        }
+
+        // --- SCROLL REVEAL SCRIPT ---
+        window.addEventListener('scroll', reveal);
+        function reveal(){
+            var reveals = document.querySelectorAll('.reveal');
+            for(var i = 0; i < reveals.length; i++){
+                var windowheight = window.innerHeight;
+                var revealtop = reveals[i].getBoundingClientRect().top;
+                var revealpoint = 100;
+
+                if(revealtop < windowheight - revealpoint){
+                    reveals[i].classList.add('active');
+                }
+            }
         }
     </script>
 
